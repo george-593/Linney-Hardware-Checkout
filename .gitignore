@@ -29,3 +29,10 @@ frontend/out/*
 # Logs
 logs
 *.log
+
+# Default ignored files
+db/shelf/
+db/workspace.xml
+# Datasource local storage ignored files
+db/dataSources/
+db/dataSources.local.xml
