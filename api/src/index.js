@@ -14,6 +14,7 @@ const helper = require("./db/helper");
 const loggerMW = require("./middleware/LoggerMW");
 
 const accountRoutes = require("./routes/account");
+const inventoryRoutes = require("./routes/inventory");
 
 // Config
 const apiRoot = "/api/v1";
@@ -74,6 +75,7 @@ passport.deserializeUser((user, done) => {
 // Routes
 const router = express.Router();
 router.use("/account", accountRoutes);
+router.use("/inventory", inventoryRoutes);
 
 router.get("/", (req, res) => {
 	res.send("Hello World!");

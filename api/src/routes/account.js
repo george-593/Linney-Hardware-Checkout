@@ -1,12 +1,8 @@
-const expres = require("express");
-const router = expres.Router();
+const express = require("express");
+const router = express.Router();
 const passport = require("passport");
 
 const { getUser, createUser } = require("../db/helper");
-
-router.get("/", (req, res) => {
-	res.send("Hello World!");
-});
 
 router.get("/get/:username", async (req, res) => {
 	const username = req.params.username;

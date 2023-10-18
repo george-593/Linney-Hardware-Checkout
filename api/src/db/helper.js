@@ -52,8 +52,14 @@ const matchPassword = async (username, password) => {
 	}
 };
 
+const getInventory = async () => {
+	const data = await client.query("SELECT * FROM inventory");
+	return data.rows;
+};
+
 module.exports = {
 	createUser,
 	matchPassword,
 	getUser,
+	getInventory,
 };
