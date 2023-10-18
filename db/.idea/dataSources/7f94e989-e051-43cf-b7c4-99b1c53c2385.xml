@@ -11,9 +11,9 @@
 4||10|c|G
 4||10|C|G
 4||10|T|G</Grants>
-      <IntrospectionStateNumber>733</IntrospectionStateNumber>
+      <IntrospectionStateNumber>748</IntrospectionStateNumber>
       <ServerVersion>16.0</ServerVersion>
-      <StartupTime>1697029436</StartupTime>
+      <StartupTime>1697297293</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1409,54 +1409,54 @@ true posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>733</IntrospectionStateNumber>
+      <IntrospectionStateNumber>748</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <role id="3" parent="1" name="pg_checkpoint">
-      <ObjectId>4544</ObjectId>
-    </role>
-    <role id="4" parent="1" name="pg_create_subscription">
-      <ObjectId>6304</ObjectId>
-    </role>
-    <role id="5" parent="1" name="pg_database_owner">
+    <role id="3" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
     </role>
-    <role id="6" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
+    <role id="4" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
     </role>
-    <role id="7" parent="1" name="pg_monitor">
+    <role id="5" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
+    </role>
+    <role id="6" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
       <RoleGrants>3374
 3375
 3377</RoleGrants>
     </role>
-    <role id="8" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
-    </role>
-    <role id="9" parent="1" name="pg_read_all_settings">
+    <role id="7" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="10" parent="1" name="pg_read_all_stats">
+    <role id="8" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
     </role>
-    <role id="11" parent="1" name="pg_read_server_files">
-      <ObjectId>4569</ObjectId>
-    </role>
-    <role id="12" parent="1" name="pg_signal_backend">
-      <ObjectId>4200</ObjectId>
-    </role>
-    <role id="13" parent="1" name="pg_stat_scan_tables">
+    <role id="9" parent="1" name="pg_stat_scan_tables">
       <ObjectId>3377</ObjectId>
     </role>
-    <role id="14" parent="1" name="pg_use_reserved_connections">
+    <role id="10" parent="1" name="pg_read_server_files">
+      <ObjectId>4569</ObjectId>
+    </role>
+    <role id="11" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
+    </role>
+    <role id="12" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
+    </role>
+    <role id="13" parent="1" name="pg_signal_backend">
+      <ObjectId>4200</ObjectId>
+    </role>
+    <role id="14" parent="1" name="pg_checkpoint">
+      <ObjectId>4544</ObjectId>
+    </role>
+    <role id="15" parent="1" name="pg_use_reserved_connections">
       <ObjectId>4550</ObjectId>
     </role>
-    <role id="15" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
-    </role>
-    <role id="16" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
+    <role id="16" parent="1" name="pg_create_subscription">
+      <ObjectId>6304</ObjectId>
     </role>
     <role id="17" parent="1" name="postgres">
       <BypassRls>1</BypassRls>
@@ -4828,112 +4828,132 @@ true posixrules
     <schema id="263" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>733</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2023-10-11.14:04:03.944</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-10-11.13:04:04</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>748</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2023-10-14.16:31:00.718</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-10-14.15:31:01</LocalIntrospectionTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <table id="264" parent="263" name="inventory">
+    <sequence id="264" parent="263" name="inventory_id_seq">
+      <DasType>integer|0s</DasType>
       <ObjectId>16384</ObjectId>
+      <SequenceIdentity>1(1)</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>731</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="265" parent="263" name="users_id_seq">
+      <DasType>integer|0s</DasType>
+      <ObjectId>16393</ObjectId>
+      <SequenceIdentity>1(3)</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>732</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="266" parent="263" name="inventory">
+      <ObjectId>16385</ObjectId>
       <StateNumber>731</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="265" parent="263" name="users">
-      <ObjectId>16391</ObjectId>
+    <table id="267" parent="263" name="users">
+      <ObjectId>16394</ObjectId>
       <StateNumber>732</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="266" parent="264" name="id">
+    <column id="268" parent="266" name="id">
       <DasType>integer|0s</DasType>
+      <DefaultExpression>nextval(&apos;inventory_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>731</StateNumber>
+      <SequenceId>16384</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="267" parent="264" name="name">
+    <column id="269" parent="266" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>731</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="268" parent="264" name="description">
+    <column id="270" parent="266" name="description">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
       <StateNumber>731</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="269" parent="264" name="quantity">
+    <column id="271" parent="266" name="quantity">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
       <StateNumber>731</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="270" parent="264" name="inventory_pkey">
+    <index id="272" parent="266" name="inventory_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16389</ObjectId>
+      <ObjectId>16391</ObjectId>
       <Primary>1</Primary>
       <StateNumber>731</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="271" parent="264" name="inventory_pkey">
+    <key id="273" parent="266" name="inventory_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16390</ObjectId>
+      <ObjectId>16392</ObjectId>
       <Primary>1</Primary>
       <StateNumber>731</StateNumber>
-      <UnderlyingIndexId>16389</UnderlyingIndexId>
+      <UnderlyingIndexId>16391</UnderlyingIndexId>
     </key>
-    <column id="272" parent="265" name="id">
+    <column id="274" parent="267" name="id">
       <DasType>integer|0s</DasType>
+      <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>732</StateNumber>
+      <SequenceId>16393</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="273" parent="265" name="name">
+    <column id="275" parent="267" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>732</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="274" parent="265" name="email">
+    <column id="276" parent="267" name="email">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
       <StateNumber>732</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="275" parent="265" name="isadmin">
+    <column id="277" parent="267" name="isadmin">
       <DasType>boolean|0s</DasType>
       <Position>4</Position>
       <StateNumber>732</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="276" parent="265" name="password">
+    <column id="278" parent="267" name="password">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
       <StateNumber>732</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="277" parent="265" name="users_pkey">
+    <index id="279" parent="267" name="users_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16396</ObjectId>
+      <ObjectId>16400</ObjectId>
       <Primary>1</Primary>
       <StateNumber>732</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="278" parent="265" name="users_pkey">
+    <key id="280" parent="267" name="users_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16397</ObjectId>
+      <ObjectId>16401</ObjectId>
       <Primary>1</Primary>
       <StateNumber>732</StateNumber>
-      <UnderlyingIndexId>16396</UnderlyingIndexId>
+      <UnderlyingIndexId>16400</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>
