@@ -9,6 +9,7 @@ const logger = require("./utils/Logger");
 const package = require("../package.json");
 
 const helper = require("./db/helper");
+const { sessionStore } = require("./db/db");
 //const LocalStrategy = require("./strategies/LocalStrategy");
 
 const loggerMW = require("./middleware/LoggerMW");
@@ -26,13 +27,17 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(loggerMW);
+
 app.use(
 	session({
 		secret: "secret",
 		resave: false,
 		saveUninitialized: true,
+		store: sessionStore,
 	})
 );
+
+// Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -41,7 +46,6 @@ passport.use(
 		logger.info(`Logging in user ${user}`);
 		// Check the user exists
 		exists = await helper.getUser(user);
-		console.log(exists);
 		if (!exists) {
 			logger.info(`User ${user} does not exist`);
 			return done(null, false);
@@ -49,7 +53,6 @@ passport.use(
 
 		// Check the password matches
 		match = await helper.matchPassword(user, password);
-		console.log(match);
 		if (!match) {
 			logger.info(`Password for user ${user} does not match`);
 			return done(null, false);

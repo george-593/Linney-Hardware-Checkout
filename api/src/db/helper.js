@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 
-const client = require("./db");
+const { client } = require("./db");
 const logger = require("../utils/Logger");
 
 const getUser = async (username) => {
