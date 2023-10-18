@@ -2,28 +2,19 @@ const expres = require("express");
 const router = expres.Router();
 const passport = require("passport");
 
-const { userExists, createUser } = require("../db/helper");
+const { getUser, createUser } = require("../db/helper");
 
 router.get("/", (req, res) => {
 	res.send("Hello World!");
 });
 
-router.get("/exists/:username", async (req, res) => {
-	const username = req.params.email;
-	const exists = await userExists(username);
+router.get("/get/:username", async (req, res) => {
+	const username = req.params.username;
+	const user = await getUser(username);
 
-	res.json({ exists });
+	delete user.password;
+	res.json({ exists: user });
 });
-
-/*
-router.post(
-	"/signup",
-	passport.authenticate("local-signup"),
-	(req, res, next) => {
-		res.json({ user: req.user });
-	}
-);
-*/
 
 router.post("/signup", async (req, res) => {
 	const { username, password } = req.body;
@@ -52,9 +43,4 @@ router.get("/login/success", (req, res) => {
 router.get("/login/failure", (req, res) => {
 	res.json({ error: "Error logging in" });
 });
-
-router.get("/authtest", passport.authenticate("session"), (req, res) => {
-	res.json({ user: req.session });
-});
-
 module.exports = router;

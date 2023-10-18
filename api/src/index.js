@@ -3,11 +3,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const logger = require("./utils/Logger");
 const package = require("../package.json");
 
-const LocalStrategy = require("./strategies/LocalStrategy");
+const helper = require("./db/helper");
+//const LocalStrategy = require("./strategies/LocalStrategy");
 
 const loggerMW = require("./middleware/LoggerMW");
 
@@ -27,16 +29,48 @@ app.use(
 	session({
 		secret: "secret",
 		resave: false,
-		saveUninitialized: false,
-		cookie: { secure: true },
+		saveUninitialized: true,
+	})
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(
+	new LocalStrategy(async (user, password, done) => {
+		logger.info(`Logging in user ${user}`);
+		// Check the user exists
+		exists = await helper.getUser(user);
+		console.log(exists);
+		if (!exists) {
+			logger.info(`User ${user} does not exist`);
+			return done(null, false);
+		}
+
+		// Check the password matches
+		match = await helper.matchPassword(user, password);
+		console.log(match);
+		if (!match) {
+			logger.info(`Password for user ${user} does not match`);
+			return done(null, false);
+		}
+
+		// Return the user
+		delete user.password;
+		logger.info(`User ${user} logged in`);
+		return done(null, user);
 	})
 );
 
-// Passport
+passport.serializeUser((user, done) => {
+	logger.info(`Serializing user ${user}`);
+	done(null, user);
+});
 
-app.use(passport.initialize());
-app.use(passport.session());
-LocalStrategy();
+passport.deserializeUser((user, done) => {
+	logger.info(`Deserializing user ${user}`);
+	done(null, user);
+});
+
 // Routes
 const router = express.Router();
 router.use("/account", accountRoutes);

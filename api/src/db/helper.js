@@ -3,18 +3,11 @@ const bcrypt = require("bcryptjs");
 const client = require("./db");
 const logger = require("../utils/Logger");
 
-const userExists = async (username) => {
-	const data = await client.query("SELECT * FROM users WHERE username = $1", [
-		username,
-	]);
-
-	return data.rows.length > 0;
-};
-
 const getUser = async (username) => {
 	const data = await client.query("SELECT * FROM users WHERE username = $1", [
 		username,
 	]);
+	console.log(data.rows);
 
 	if (data.rows.length > 0) {
 		return data.rows[0];
@@ -27,7 +20,7 @@ const createUser = async (username, password) => {
 	const salt = await bcrypt.genSalt(10);
 	const hash = await bcrypt.hash(password, salt);
 
-	exists = await userExists(username);
+	exists = await getUser(username);
 	if (exists) {
 		return false;
 	}
@@ -60,7 +53,6 @@ const matchPassword = async (username, password) => {
 };
 
 module.exports = {
-	userExists,
 	createUser,
 	matchPassword,
 	getUser,
