@@ -52,8 +52,25 @@ const matchPassword = async (username, password) => {
 	}
 };
 
+const userIsAdmin = async (username) => {
+	const data = await client.query(
+		"SELECT isAdmin FROM users WHERE username = $1",
+		[username]
+	);
+	return data.rows[0]["isadmin"];
+};
+
 const getInventory = async () => {
 	const data = await client.query("SELECT * FROM inventory");
+	return data.rows;
+};
+
+const addInventory = async (name, description, quantity) => {
+	const data = await client.query(
+		"INSERT INTO inventory (name, description, quantity) VALUES ($1, $2, $3) RETURNING *",
+		[name, description, quantity]
+	);
+	console.log(data.rows);
 	return data.rows;
 };
 
@@ -62,4 +79,6 @@ module.exports = {
 	matchPassword,
 	getUser,
 	getInventory,
+	userIsAdmin,
+	addInventory,
 };

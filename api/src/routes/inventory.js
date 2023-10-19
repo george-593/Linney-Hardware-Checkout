@@ -2,16 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 const checkAuth = require("../middleware/checkAuth");
-const { getInventory } = require("../db/helper");
+const { getInventory, addInventory } = require("../db/helper");
+const isAdmin = require("../middleware/isAdmin");
 
 router.use(checkAuth);
 
-router.get("/", (req, res) => {
-	res.json({ message: "Hello World!" });
+router.get("/", async (req, res) => {
+	inv = await getInventory();
+	res.json({ inventory: inv });
 });
 
-router.get("/get", async (req, res) => {
-	inv = await getInventory();
+router.post("/add", isAdmin, async (req, res) => {
+	const { name, description, quantity } = req.body;
+	const inv = await addInventory(name, description, quantity);
 	res.json({ inventory: inv });
 });
 
