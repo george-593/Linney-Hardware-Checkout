@@ -7,8 +7,6 @@
     <list default="true" id="bb43aacb-e39c-4168-908a-ce4c42cfe58a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../api/src/db/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/db/helper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api/src/routes/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f94e989-e051-43cf-b7c4-99b1c53c2385.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7f94e989-e051-43cf-b7c4-99b1c53c2385.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f94e989-e051-43cf-b7c4-99b1c53c2385/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7f94e989-e051-43cf-b7c4-99b1c53c2385/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

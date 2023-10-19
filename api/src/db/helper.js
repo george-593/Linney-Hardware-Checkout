@@ -74,6 +74,14 @@ const addInventory = async (name, description, quantity) => {
 	return data.rows;
 };
 
+const deleteInventory = async (id) => {
+	const data = await client.query(
+		"DELETE FROM inventory WHERE id = $1 RETURNING *",
+		[id]
+	);
+	return data.rows;
+};
+
 module.exports = {
 	createUser,
 	matchPassword,
@@ -81,4 +89,5 @@ module.exports = {
 	getInventory,
 	userIsAdmin,
 	addInventory,
+	deleteInventory,
 };
