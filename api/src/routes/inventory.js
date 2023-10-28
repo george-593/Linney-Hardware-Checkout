@@ -19,8 +19,20 @@ router.post("/add", isAdmin, async (req, res) => {
 });
 
 router.delete("/delete/:id", isAdmin, async (req, res) => {
-	const { id } = req.params.id;
+	const { id } = req.params;
 	const inv = await deleteInventory(id);
+
+	if (inv.length === 0) {
+		res.status(404).json({ error: "No inventory with that ID" });
+		return;
+	}
+	res.json({ inventory: inv });
+});
+
+router.put("/update/:id", isAdmin, async (req, res) => {
+	const { id } = req.params;
+	const { name, description, quantity } = req.body;
+	const inv = await updateInventory(id, name, description, quantity);
 	res.json({ inventory: inv });
 });
 

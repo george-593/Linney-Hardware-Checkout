@@ -82,6 +82,14 @@ const deleteInventory = async (id) => {
 	return data.rows;
 };
 
+const updateInventory = async (id, name, description, quantity) => {
+	const data = await client.query(
+		"UPDATE inventory SET name = $1, description = $2, quantity = $3 WHERE id = $4 RETURNING *",
+		[name, description, quantity, id]
+	);
+	return data.rows;
+};
+
 module.exports = {
 	createUser,
 	matchPassword,
