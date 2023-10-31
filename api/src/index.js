@@ -8,7 +8,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const logger = require("./utils/Logger");
 const package = require("../package.json");
 
-const helper = require("./db/helper");
+const helper = require("./db/helpers/user");
 const { sessionStore } = require("./db/db");
 //const LocalStrategy = require("./strategies/LocalStrategy");
 

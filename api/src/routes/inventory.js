@@ -2,7 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const checkAuth = require("../middleware/checkAuth");
-const { getInventory, addInventory, deleteInventory } = require("../db/helper");
+const {
+	getInventory,
+	addInventory,
+	deleteInventory,
+} = require("../db/helpers/inventory");
 const isAdmin = require("../middleware/isAdmin");
 
 router.use(checkAuth);

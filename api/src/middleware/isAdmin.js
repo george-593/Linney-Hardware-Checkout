@@ -1,4 +1,4 @@
-const { userIsAdmin } = require("../db/helper");
+const { userIsAdmin } = require("../db/helpers/user");
 
 module.exports = async (req, res, next) => {
 	if (req.isAuthenticated()) {
