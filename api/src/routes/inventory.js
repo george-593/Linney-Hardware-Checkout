@@ -4,8 +4,10 @@ const router = express.Router();
 const checkAuth = require("../middleware/checkAuth");
 const {
 	getInventory,
+	getInventoryItem,
 	addInventory,
 	deleteInventory,
+	updateInventory,
 } = require("../db/helpers/inventory");
 const isAdmin = require("../middleware/isAdmin");
 
@@ -33,9 +35,29 @@ router.delete("/delete/:id", isAdmin, async (req, res) => {
 	res.json({ inventory: inv });
 });
 
-router.put("/update/:id", isAdmin, async (req, res) => {
+router.patch("/update/:id", isAdmin, async (req, res) => {
 	const { id } = req.params;
-	const { name, description, quantity } = req.body;
+	var { name, description, quantity } = req.body;
+
+	if (!name && !description && !quantity) {
+		res.status(400).json({ error: "No fields to update" });
+		return;
+	}
+
+	if (!name || !description || !quantity) {
+		old = await getInventoryItem(id);
+
+		if (!name) {
+			name = old[0].name;
+		}
+		if (!description) {
+			description = old[0].description;
+		}
+		if (!quantity) {
+			quantity = old[0].quantity;
+		}
+	}
+
 	const inv = await updateInventory(id, name, description, quantity);
 	res.json({ inventory: inv });
 });

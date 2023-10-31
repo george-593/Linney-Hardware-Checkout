@@ -5,6 +5,13 @@ const getInventory = async () => {
 	return data.rows;
 };
 
+const getInventoryItem = async (id) => {
+	const data = await client.query("SELECT * FROM inventory WHERE id = $1", [
+		id,
+	]);
+	return data.rows;
+};
+
 const addInventory = async (name, description, quantity) => {
 	const data = await client.query(
 		"INSERT INTO inventory (name, description, quantity) VALUES ($1, $2, $3) RETURNING *",
@@ -32,6 +39,7 @@ const updateInventory = async (id, name, description, quantity) => {
 
 module.exports = {
 	getInventory,
+	getInventoryItem,
 	addInventory,
 	deleteInventory,
 	updateInventory,
