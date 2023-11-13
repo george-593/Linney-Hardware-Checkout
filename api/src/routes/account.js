@@ -24,13 +24,9 @@ router.post("/signup", async (req, res) => {
 	}
 });
 
-router.post(
-	"/login",
-	passport.authenticate("local", {
-		successRedirect: "/api/v1/account/login/success",
-		failureRedirect: "/api/v1/account/login/failure",
-	})
-);
+router.post("/login", passport.authenticate("local"), (req, res) => {
+	res.json({ user: req.user });
+});
 
 router.get("/login/success", (req, res) => {
 	res.json({ user: req.user });
