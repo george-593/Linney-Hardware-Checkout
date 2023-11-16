@@ -1,7 +1,9 @@
 import Login from "./components/Login";
+import Register from "./components/Register";
 import Header from "./components/Header";
 
 import { useFetchProfile } from "./hooks/useFetchProfile";
+
 import { useEffect, useState } from "react";
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
 			{screen === "users" && <p>Users screen</p>}
 			{screen === "requests" && <p>Requests screen</p>}
 			{screen === "login" && <Login />}
+			{screen === "register" && <Register />}
 		</>
 	);
 }

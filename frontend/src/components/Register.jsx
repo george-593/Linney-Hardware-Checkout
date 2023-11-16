@@ -1,12 +1,21 @@
 import { useState } from "react";
 
-const Login = () => {
-	const [inputs, setInputs] = useState({});
+const Register = () => {
+	const [inputs, setInputs] = useState({
+		username: "",
+		password: "",
+		confirmPassword: "",
+	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		fetch("http://localhost:5000/api/v1/account/login", {
+		if (inputs.password !== inputs.confirmPassword) {
+			alert("Passwords do not match");
+			return;
+		}
+
+		fetch("http://localhost:5000/api/v1/account/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -32,7 +41,7 @@ const Login = () => {
 
 	return (
 		<div>
-			<h1>Login</h1>
+			<h1>Register</h1>
 
 			<form onSubmit={handleSubmit}>
 				<input
@@ -47,10 +56,16 @@ const Login = () => {
 					value={inputs.password}
 					onChange={handleChange || ""}
 				/>
+				<input
+					type="password"
+					name="confirmPassword"
+					value={inputs.confirmPassword}
+					onChange={handleChange || ""}
+				/>
 				<input type="submit" value="Login" />
 			</form>
 		</div>
 	);
 };
 
-export default Login;
+export default Register;

@@ -22,7 +22,7 @@ router.get("/get/", checkAuth, async (req, res) => {
 	res.json({ exists: user });
 });
 
-router.post("/signup", async (req, res) => {
+router.post("/register", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await createUser(username, password);
 

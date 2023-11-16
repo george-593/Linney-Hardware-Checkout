@@ -1,5 +1,10 @@
 /* eslint-disable react/prop-types */
 const Header = ({ user, setScreen }) => {
+	const handleLogout = () => {
+		document.cookie =
+			"connect.sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+		window.location.reload(false);
+	};
 	return (
 		<div className="w-full flex justify-between">
 			<div>
@@ -12,21 +17,28 @@ const Header = ({ user, setScreen }) => {
 
 				{user?.isadmin && (
 					<>
-						<a href="">All Inventory</a>
-						<a href="">Users</a>
-						<a href="">Requests</a>
+						<button onClick={() => setScreen("all-inventory")}>
+							All Inventory
+						</button>
+						<button onClick={() => setScreen("users")}>
+							Users
+						</button>
+						<button onClick={() => setScreen("requests")}>
+							Requests
+						</button>
 					</>
 				)}
 			</div>
 			{(user && (
 				<div>
 					<p>Welcome, {user.username}</p>
-					<a href="">Logout</a>
+					<a onClick={() => handleLogout()}>Logout</a>
 				</div>
 			)) || (
 				<div>
 					<a onClick={() => setScreen("login")}>Login</a>
-					<a href="">Register</a>
+					<p>or</p>
+					<a onClick={() => setScreen("register")}>Register</a>
 				</div>
 			)}
 		</div>
