@@ -4,8 +4,18 @@ const passport = require("passport");
 
 const { getUser, createUser } = require("../db/helpers/user");
 
+const checkAuth = require("../middleware/checkAuth");
+
 router.get("/get/:username", async (req, res) => {
 	const username = req.params.username;
+	const user = await getUser(username);
+
+	delete user.password;
+	res.json({ exists: user });
+});
+
+router.get("/get/", checkAuth, async (req, res) => {
+	const username = req.user;
 	const user = await getUser(username);
 
 	delete user.password;

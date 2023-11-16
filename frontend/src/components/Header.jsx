@@ -1,19 +1,34 @@
-const Header = () => {
+/* eslint-disable react/prop-types */
+const Header = ({ user, setScreen }) => {
 	return (
 		<div className="w-full flex justify-between">
 			<div>
-				<a href="">Dashboard</a>
-				<a href="">Inventory</a>
-				<a href="">Users</a>
-				<a href="">All Inventory </a>
-				<a href="">Requests</a>
-				<a href="">Categories</a>
-			</div>
+				<button onClick={() => setScreen("dashboard")}>
+					Dashboard
+				</button>
+				<button onClick={() => setScreen("inventory")}>
+					Inventory
+				</button>
 
-			<div>
-				<p>Welcome, name</p>
-				<a href="">Logout</a>
+				{user?.isadmin && (
+					<>
+						<a href="">All Inventory</a>
+						<a href="">Users</a>
+						<a href="">Requests</a>
+					</>
+				)}
 			</div>
+			{(user && (
+				<div>
+					<p>Welcome, {user.username}</p>
+					<a href="">Logout</a>
+				</div>
+			)) || (
+				<div>
+					<a onClick={() => setScreen("login")}>Login</a>
+					<a href="">Register</a>
+				</div>
+			)}
 		</div>
 	);
 };
