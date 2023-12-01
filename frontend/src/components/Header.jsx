@@ -6,42 +6,83 @@ const Header = ({ user, setScreen }) => {
 		window.location.reload(false);
 	};
 	return (
-		<div className="w-full flex justify-between">
-			<div>
-				<button onClick={() => setScreen("dashboard")}>
-					Dashboard
-				</button>
-				<button onClick={() => setScreen("inventory")}>
-					Inventory
-				</button>
+		<>
+			<div className="w-3/4 flex justify-between mx-auto mt-6">
+				<div>
+					<h1 className="font-poppins text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-l from-primary to-accent">
+						Hardware Checkout
+					</h1>
+				</div>
+				<div className="flex">
+					<button
+						onClick={() => setScreen("dashboard")}
+						className="hover:underline text-lg mr-4"
+					>
+						Dashboard
+					</button>
+					<button
+						onClick={() => setScreen("inventory")}
+						className="hover:underline text-lg mr-4"
+					>
+						Inventory
+					</button>
 
-				{user?.isadmin && (
-					<>
-						<button onClick={() => setScreen("all-inventory")}>
-							All Inventory
-						</button>
-						<button onClick={() => setScreen("users")}>
-							Users
-						</button>
-						<button onClick={() => setScreen("requests")}>
-							Requests
-						</button>
-					</>
+					{user?.isadmin && (
+						<>
+							<button
+								onClick={() => setScreen("all-inventory")}
+								className="hover:underline text-lg mr-4"
+							>
+								All Inventory
+							</button>
+							<button
+								onClick={() => setScreen("users")}
+								className="hover:underline text-lg mr-4"
+							>
+								Users
+							</button>
+							<button
+								onClick={() => setScreen("requests")}
+								className="hover:underline text-lg mr-4"
+							>
+								Requests
+							</button>
+						</>
+					)}
+				</div>
+				{(user && (
+					<div className="flex">
+						<p className="mr-4 text-lg">
+							Welcome,{" "}
+							<span className="text-accent">{user.username}</span>
+						</p>
+						<a
+							onClick={() => handleLogout()}
+							className="hover:cursor-pointer text-lg hover:underline"
+						>
+							Logout
+						</a>
+					</div>
+				)) || (
+					<div className="text-lg flex">
+						<a
+							onClick={() => setScreen("login")}
+							className="hover:cursor-pointer hover:underline"
+						>
+							Login
+						</a>
+						<p className="mx-2">or</p>
+						<a
+							onClick={() => setScreen("register")}
+							className="hover:cursor-pointer hover:underline"
+						>
+							Register
+						</a>
+					</div>
 				)}
 			</div>
-			{(user && (
-				<div>
-					<p>Welcome, {user.username}</p>
-					<a onClick={() => handleLogout()}>Logout</a>
-				</div>
-			)) || (
-				<div>
-					<a onClick={() => setScreen("login")}>Login</a>
-					<p>or</p>
-					<a onClick={() => setScreen("register")}>Register</a>
-				</div>
-			)}
-		</div>
+			<hr className="my-4 h-0.5 border-t-0 bg-gradient-to-r from-transparent to-transparent via-primary opacity-60" />
+		</>
 	);
 };
 
