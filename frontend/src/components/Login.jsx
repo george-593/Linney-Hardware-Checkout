@@ -31,24 +31,26 @@ const Login = () => {
 	};
 
 	return (
-		<div>
-			<h1>Login</h1>
+		<div className="w-[75%] mx-auto flex justify-center">
+			<div className="bg-secondary flex flex-col items-center py-10 px-5 rounded-xl ">
+				<h2 className="font-poppins text-3xl mb-10">Login</h2>
 
-			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					name="username"
-					value={inputs.username || ""}
-					onChange={handleChange}
-				/>
-				<input
-					type="password"
-					name="password"
-					value={inputs.password}
-					onChange={handleChange || ""}
-				/>
-				<input type="submit" value="Login" />
-			</form>
+				<form onSubmit={handleSubmit} className="">
+					<input
+						type="text"
+						name="username"
+						value={inputs.username || ""}
+						onChange={handleChange}
+					/>
+					<input
+						type="password"
+						name="password"
+						value={inputs.password}
+						onChange={handleChange || ""}
+					/>
+					<input type="submit" value="Login" />
+				</form>
+			</div>
 		</div>
 	);
 };
