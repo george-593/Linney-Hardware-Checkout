@@ -11,3 +11,13 @@ CREATE TABLE public.users (
     isAdmin boolean,
     password varchar(255)
 );
+
+CREATE TABLE public.requests (
+    id SERIAL PRIMARY KEY,
+    user_id int,
+    item_id int,
+    quantity int,
+    status varchar(255),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (item_id) REFERENCES inventory(id)
+);

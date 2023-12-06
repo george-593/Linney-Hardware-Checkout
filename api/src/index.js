@@ -16,6 +16,7 @@ const loggerMW = require("./middleware/LoggerMW");
 
 const accountRoutes = require("./routes/account");
 const inventoryRoutes = require("./routes/inventory");
+const requestsRoutes = require("./routes/requests");
 
 // Config
 const apiRoot = "/api/v1";
@@ -87,6 +88,7 @@ passport.deserializeUser((user, done) => {
 const router = express.Router();
 router.use("/account", accountRoutes);
 router.use("/inventory", inventoryRoutes);
+router.use("/requests", requestsRoutes);
 
 router.get("/", (req, res) => {
 	res.send("Hello World!");
