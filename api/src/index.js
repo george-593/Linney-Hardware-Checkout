@@ -18,6 +18,8 @@ const accountRoutes = require("./routes/account");
 const inventoryRoutes = require("./routes/inventory");
 const requestsRoutes = require("./routes/requests");
 
+const { getUser } = require("./db/helpers/user");
+
 // Config
 const apiRoot = "/api/v1";
 const port = process.env.PORT || 5000;
@@ -79,8 +81,9 @@ passport.serializeUser((user, done) => {
 	done(null, user);
 });
 
-passport.deserializeUser((user, done) => {
+passport.deserializeUser(async (user, done) => {
 	logger.info(`Deserializing user ${user}`);
+	user = await getUser(user);
 	done(null, user);
 });
 

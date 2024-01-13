@@ -14,10 +14,10 @@ CREATE TABLE public.users (
 
 CREATE TABLE public.requests (
     id SERIAL PRIMARY KEY,
-    user_id int,
-    item_id int,
+    userId int,
+    itemId int,
     quantity int,
-    status varchar(255),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (item_id) REFERENCES inventory(id)
+    isComplete boolean,
+    FOREIGN KEY (userId) REFERENCES users(id),
+    FOREIGN KEY (itemId) REFERENCES inventory(id)
 );
