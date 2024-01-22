@@ -15,10 +15,21 @@ router.use(checkAuth);
 
 router.get("/", async (req, res) => {
 	inv = await getInventory();
-	res.json({ inventory: inv });
+	res.json(inv);
 });
 
-router.post("/add", isAdmin, async (req, res) => {
+router.get("/:id", async (req, res) => {
+	const { id } = req.params;
+	const inv = await getInventoryItem(id);
+
+	if (inv.length === 0) {
+		res.status(404).json({ error: "No inventory with that ID" });
+		return;
+	}
+	res.json(inv[0]);
+});
+
+router.post("/", isAdmin, async (req, res) => {
 	const { name, description, quantity } = req.body;
 	const inv = await addInventory(name, description, quantity);
 	res.json({ inventory: inv });
