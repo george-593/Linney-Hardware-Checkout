@@ -11,15 +11,15 @@ router.get("/get/:username", async (req, res) => {
 	const user = await getUser(username);
 
 	delete user.password;
-	res.json({ exists: user });
+	res.json(user);
 });
 
-router.get("/get/", checkAuth, async (req, res) => {
-	const username = req.user;
+router.get("/get", checkAuth, async (req, res) => {
+	const username = req.user.username;
 	const user = await getUser(username);
 
 	delete user.password;
-	res.json({ exists: user });
+	res.json(user);
 });
 
 router.post("/register", async (req, res) => {

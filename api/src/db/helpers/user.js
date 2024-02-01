@@ -7,7 +7,6 @@ const getUser = async (username) => {
 	const data = await client.query("SELECT * FROM users WHERE username = $1", [
 		username,
 	]);
-	console.log(data.rows);
 
 	if (data.rows.length > 0) {
 		return data.rows[0];
@@ -52,6 +51,7 @@ const matchPassword = async (username, password) => {
 	}
 };
 
+// Old method before the user object was got during serialization
 const userIsAdmin = async (username) => {
 	const data = await client.query(
 		"SELECT isAdmin FROM users WHERE username = $1",
@@ -64,5 +64,4 @@ module.exports = {
 	createUser,
 	matchPassword,
 	getUser,
-	userIsAdmin,
 };

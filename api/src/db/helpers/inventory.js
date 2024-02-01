@@ -17,7 +17,6 @@ const addInventory = async (name, description, quantity) => {
 		"INSERT INTO inventory (name, description, quantity) VALUES ($1, $2, $3) RETURNING *",
 		[name, description, quantity]
 	);
-	console.log(data.rows);
 	return data.rows;
 };
 

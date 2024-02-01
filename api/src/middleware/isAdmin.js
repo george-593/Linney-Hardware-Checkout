@@ -1,9 +1,7 @@
-const { userIsAdmin } = require("../db/helpers/user");
-
 module.exports = async (req, res, next) => {
 	if (req.isAuthenticated()) {
 		const user = req.user;
-		const isAdmin = await userIsAdmin(user);
+		const isAdmin = user.isadmin;
 
 		if (isAdmin) {
 			next();

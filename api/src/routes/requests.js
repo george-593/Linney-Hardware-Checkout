@@ -35,7 +35,34 @@ router.post("/", async (req, res) => {
 		req.body.quantity,
 		false
 	);
-	res.json({ req });
+	res.json(req);
+});
+
+router.patch("/:id", isAdmin, async (req, res) => {
+	const { id } = req.params;
+	const { user_id, item_id, quantity, status } = req.body;
+
+	if (!user_id && !item_id && !quantity && !status) {
+		res.status(400).json({ error: "No fields to update" });
+		return;
+	}
+
+	if (!user_id || !item_id || !quantity || !status) {
+		old = await getRequest(id);
+
+		if (!user_id) user_id = old.user_id;
+		if (!item_id) item_id = old.item_id;
+		if (!quantity) quantity = old.quantity;
+		if (!status) status = old.status;
+	}
+
+	data = await updateRequest(id, user_id, item_id, quantity, status);
+	res.json(data);
+});
+
+router.delete("/:id", isAdmin, async (req, res) => {
+	data = await deleteRequest(req.params.id);
+	res.json(data);
 });
 
 module.exports = router;

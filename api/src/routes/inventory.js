@@ -32,21 +32,21 @@ router.get("/:id", async (req, res) => {
 router.post("/", isAdmin, async (req, res) => {
 	const { name, description, quantity } = req.body;
 	const inv = await addInventory(name, description, quantity);
-	res.json({ inventory: inv });
+	res.json(inv);
 });
 
-router.delete("/delete/:id", isAdmin, async (req, res) => {
+router.delete("/:id", isAdmin, async (req, res) => {
 	const { id } = req.params;
 	const inv = await deleteInventory(id);
 
 	if (inv.length === 0) {
-		res.status(404).json({ error: "No inventory with that ID" });
+		res.status(404).json({ error: "No inventory item with that ID" });
 		return;
 	}
-	res.json({ inventory: inv });
+	res.json(inv);
 });
 
-router.patch("/update/:id", isAdmin, async (req, res) => {
+router.patch("/:id", isAdmin, async (req, res) => {
 	const { id } = req.params;
 	var { name, description, quantity } = req.body;
 
@@ -70,7 +70,7 @@ router.patch("/update/:id", isAdmin, async (req, res) => {
 	}
 
 	const inv = await updateInventory(id, name, description, quantity);
-	res.json({ inventory: inv });
+	res.json(inv);
 });
 
 module.exports = router;
