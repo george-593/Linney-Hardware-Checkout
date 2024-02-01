@@ -22,7 +22,6 @@ function App() {
 	return (
 		<>
 			<Header user={user} setScreen={(screen) => setScreen(screen)} />
-
 			{screen === "dashboard" && <p>Dashboard screen</p>}
 			{screen === "inventory" && <p>Inventory screen</p>}
 			{screen === "all-inventory" && <p>All Inventory screen</p>}
