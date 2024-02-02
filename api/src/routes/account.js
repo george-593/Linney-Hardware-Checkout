@@ -19,7 +19,7 @@ router.get("/get", checkAuth, async (req, res) => {
 	const user = await getUser(username);
 
 	delete user.password;
-	res.status(200).json({ user });
+	res.status(200).json(user);
 });
 
 router.post("/register", async (req, res) => {
@@ -28,14 +28,14 @@ router.post("/register", async (req, res) => {
 
 	delete user.password;
 	if (user) {
-		res.status(201).json({ user });
+		res.status(201).json(user);
 	} else {
 		res.status(500).json({ error: "Error creating user" });
 	}
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
-	res.status(200).json({ user: req.user });
+	res.status(200).json(req.user);
 });
 
 module.exports = router;
