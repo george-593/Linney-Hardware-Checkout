@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb43aacb-e39c-4168-908a-ce4c42cfe58a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../api/src/db/helpers/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/db/helpers/inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/db/helpers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/db/helpers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/middleware/isAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/middleware/isAdmin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api/src/routes/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/src/routes/requests.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/routes/requests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

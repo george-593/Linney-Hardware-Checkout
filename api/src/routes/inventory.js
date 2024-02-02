@@ -15,7 +15,7 @@ router.use(checkAuth);
 
 router.get("/", async (req, res) => {
 	inv = await getInventory();
-	res.json(inv);
+	res.status(200).json(inv);
 });
 
 router.get("/:id", async (req, res) => {
@@ -26,13 +26,13 @@ router.get("/:id", async (req, res) => {
 		res.status(404).json({ error: "No inventory with that ID" });
 		return;
 	}
-	res.json(inv[0]);
+	res.status(200).json(inv[0]);
 });
 
 router.post("/", isAdmin, async (req, res) => {
 	const { name, description, quantity } = req.body;
 	const inv = await addInventory(name, description, quantity);
-	res.json(inv);
+	res.status(201).json(inv);
 });
 
 router.delete("/:id", isAdmin, async (req, res) => {
@@ -43,7 +43,7 @@ router.delete("/:id", isAdmin, async (req, res) => {
 		res.status(404).json({ error: "No inventory item with that ID" });
 		return;
 	}
-	res.json(inv);
+	res.status(200).json(inv);
 });
 
 router.patch("/:id", isAdmin, async (req, res) => {
@@ -70,7 +70,7 @@ router.patch("/:id", isAdmin, async (req, res) => {
 	}
 
 	const inv = await updateInventory(id, name, description, quantity);
-	res.json(inv);
+	res.status(200).json(inv);
 });
 
 module.exports = router;

@@ -15,12 +15,12 @@ router.use(checkAuth);
 
 router.get("/", async (req, res) => {
 	data = await getRequests();
-	res.json(data);
+	res.status(200).json(data);
 });
 
 router.get("/:id", async (req, res) => {
 	data = await getRequest(req.params.id);
-	res.json(data);
+	res.status(200).json(data);
 });
 
 router.post("/", async (req, res) => {
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
 		req.body.quantity,
 		false
 	);
-	res.json(req);
+	res.status(201).json(req);
 });
 
 router.patch("/:id", isAdmin, async (req, res) => {
@@ -57,12 +57,12 @@ router.patch("/:id", isAdmin, async (req, res) => {
 	}
 
 	data = await updateRequest(id, user_id, item_id, quantity, status);
-	res.json(data);
+	res.status(200).json(data);
 });
 
 router.delete("/:id", isAdmin, async (req, res) => {
 	data = await deleteRequest(req.params.id);
-	res.json(data);
+	res.status(200).json(data);
 });
 
 module.exports = router;
