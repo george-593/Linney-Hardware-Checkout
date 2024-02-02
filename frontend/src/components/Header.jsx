@@ -14,18 +14,22 @@ const Header = ({ user, setScreen }) => {
 					</h1>
 				</div>
 				<div className="flex">
-					<button
-						onClick={() => setScreen("dashboard")}
-						className="hover:underline text-lg mr-4"
-					>
-						Dashboard
-					</button>
-					<button
-						onClick={() => setScreen("inventory")}
-						className="hover:underline text-lg mr-4"
-					>
-						Inventory
-					</button>
+					{user && (
+						<>
+							<button
+								onClick={() => setScreen("dashboard")}
+								className="hover:underline text-lg mr-4"
+							>
+								Dashboard
+							</button>
+							<button
+								onClick={() => setScreen("inventory")}
+								className="hover:underline text-lg mr-4"
+							>
+								Inventory
+							</button>
+						</>
+					)}
 
 					{user?.isadmin && (
 						<>
