@@ -34,10 +34,10 @@ const Header = ({ user, setScreen }) => {
 					{user?.isadmin && (
 						<>
 							<button
-								onClick={() => setScreen("all-inventory")}
+								onClick={() => setScreen("manage-inv")}
 								className="hover:underline text-lg mr-4"
 							>
-								All Inventory
+								Manage Inventory
 							</button>
 							<button
 								onClick={() => setScreen("users")}

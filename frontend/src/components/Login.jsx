@@ -21,6 +21,7 @@ const Login = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log("Success:", data);
+				console.log(data);
 				window.location.reload(false);
 			})
 			.catch((error) => {
