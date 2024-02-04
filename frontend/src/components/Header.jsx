@@ -7,7 +7,7 @@ const Header = ({ user, setScreen }) => {
 	};
 	return (
 		<>
-			<div className="w-3/4 flex justify-between mx-auto mt-6">
+			<div className="w-3/4 flex justify-between mx-auto mt-6 items-center">
 				<div>
 					<h1 className="font-poppins text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-l from-primary to-accent">
 						Hardware Checkout
