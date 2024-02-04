@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import Popup from "reactjs-popup";
+
+import "../css/popup.css";
 
 const ManageInv = () => {
 	const [inventory, setInventory] = useState([]);
@@ -25,9 +28,6 @@ const ManageInv = () => {
 	}, []);
 
 	const handleDelete = (id) => {
-		let con = confirm("Are you sure you want to delete this item?");
-		if (!con) return;
-
 		fetch(`http://localhost:5000/api/v1/inventory/${id}`, {
 			method: "DELETE",
 			headers: {
@@ -67,7 +67,7 @@ const ManageInv = () => {
 							return (
 								<tr
 									key={item.id}
-									className="group odd:bg-black active:bg-primary transition-all duration-200 ease-in-out cursor-pointer hover:bg-primary hover:text-black"
+									className="group odd:bg-black active:bg-primary transition-all duration-200 ease-in-out hover:bg-primary hover:text-black"
 								>
 									<td className="py-4 px-3">{item.name}</td>
 									<td className="py-4 px-3">
@@ -80,14 +80,46 @@ const ManageInv = () => {
 										<button className="py-2 px-3 bg-primary text-black rounded-lg mr-4 group-hover:bg-accent transition-colors duration-200 hover:shadow-xl">
 											Edit
 										</button>
-										<button
-											className="py-2 px-3 bg-primary text-black rounded-lg group-hover:bg-accent transition-colors duration-200 hover:shadow-xl"
-											onClick={() =>
-												handleDelete(item.id)
+										<Popup
+											trigger={
+												<button className="py-2 px-3 bg-primary text-black rounded-lg group-hover:bg-accent transition-colors duration-200 hover:shadow-xl">
+													Delete
+												</button>
 											}
+											modal
+											nested
+											closeOnDocumentClick
 										>
-											Delete
-										</button>
+											{(close) => (
+												<div className="w-[100%] bg-secondary rounded-lg p-6">
+													<h1 className="text-2xl font-bold text-center mb-6">
+														Are you sure you want to
+														delete this item?
+													</h1>
+													<div className="flex justify-center">
+														<button
+															className="py-2 px-3 bg-primary text-black rounded-lg mr-4 hover:shadow-xl"
+															onClick={() => {
+																handleDelete(
+																	item.id
+																);
+																close();
+															}}
+														>
+															Yes
+														</button>
+														<button
+															className="py-2 px-3 bg-primary text-black rounded-lg hover:shadow-xl"
+															onClick={() => {
+																close();
+															}}
+														>
+															No
+														</button>
+													</div>
+												</div>
+											)}
+										</Popup>
 									</td>
 								</tr>
 							);
