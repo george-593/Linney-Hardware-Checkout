@@ -84,7 +84,6 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (user, done) => {
 	logger.info(`Deserializing user ${user}`);
 	user = await getUser(user);
-	console.log(user);
 	done(null, user);
 });
 
