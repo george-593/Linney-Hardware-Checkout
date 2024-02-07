@@ -2,6 +2,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Header from "./components/Header";
 import ManageInv from "./components/ManageInv";
+import Inventory from "./components/Inventory";
 
 import { useFetchProfile } from "./hooks/useFetchProfile";
 
@@ -24,7 +25,7 @@ function App() {
 		<>
 			<Header user={user} setScreen={(screen) => setScreen(screen)} />
 			{screen === "dashboard" && <p>Dashboard screen</p>}
-			{screen === "inventory" && <p>Inventory screen</p>}
+			{screen === "inventory" && <Inventory />}
 			{screen === "manage-inv" && <ManageInv />}
 			{screen === "users" && <p>Users screen</p>}
 			{screen === "requests" && <p>Requests screen</p>}
