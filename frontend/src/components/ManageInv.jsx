@@ -214,6 +214,7 @@ const ManageInv = () => {
 				<table className="w-full border-2 border-solid rounded-lg border-primary shadow-black shadow-sm border-collapse">
 					<thead className="">
 						<tr>
+							<th className="py-4 px-3">ID</th>
 							<th className="py-4 px-3">Item</th>
 							<th className="py-4 px-3">Description</th>
 							<th className="py-4 px-3">Quantity</th>
@@ -226,6 +227,7 @@ const ManageInv = () => {
 									key={item.id}
 									className="group odd:bg-black active:bg-primary transition-all duration-200 ease-in-out hover:bg-primary hover:text-black"
 								>
+									<td className="py-4 px-3">{item.id}</td>
 									<td className="py-4 px-3">{item.name}</td>
 									<td className="py-4 px-3">
 										{item.description}

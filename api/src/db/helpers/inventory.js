@@ -1,7 +1,7 @@
 const { client } = require("../db");
 
 const getInventory = async () => {
-	const data = await client.query("SELECT * FROM inventory");
+	const data = await client.query("SELECT * FROM inventory ORDER BY id ASC");
 	return data.rows;
 };
 
