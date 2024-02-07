@@ -90,12 +90,127 @@ const ManageInv = () => {
 			});
 	};
 
+	const handleAddItem = (e) => {
+		const name = e.target.name.value;
+		const description = e.target.description.value;
+		const quantity = e.target.quantity.value;
+
+		fetch("http://localhost:5000/api/v1/inventory/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include",
+			body: JSON.stringify({
+				name,
+				description,
+				quantity,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.error) {
+					console.error("Error:", data.error);
+					return;
+				}
+				console.log(inventory);
+				setInventory([
+					...inventory,
+					{ id: data.id, name, description, quantity },
+				]);
+				console.log(inventory);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+	};
+
 	return (
 		<div className="w-[70%] mx-auto bg-secondary rounded-xl p-6">
 			<div>
-				<h1 className="text-3xl font-bold text-center mb-6">
-					All Inventory
-				</h1>
+				<div className="flex justify-between items-start">
+					<h1 className="text-3xl font-bold text-center mb-6">
+						All Inventory
+					</h1>
+					<Popup
+						trigger={
+							<button className="py-2 px-3 bg-primary text-black rounded-lg hover:shadow-xl">
+								Add new Item
+							</button>
+						}
+						modal
+						nested
+						closeOnDocumentClick
+					>
+						{(close) => (
+							<div className="w-[100%] bg-secondary rounded-lg p-6">
+								<h1 className="text-2xl font-bold text-center mb-6">
+									Add New Item
+								</h1>
+								<form
+									onSubmit={(e) => {
+										e.preventDefault();
+										handleAddItem(e);
+										close();
+									}}
+								>
+									<div className="flex flex-col mb-4">
+										<label
+											htmlFor="name"
+											className="text-lg"
+										>
+											Item Name
+										</label>
+										<input
+											type="text"
+											name="name"
+											id="name"
+											className="py-2 px-3 bg-white text-black rounded-lg"
+											required
+										/>
+									</div>
+									<div className="flex flex-col mb-4">
+										<label
+											htmlFor="description"
+											className="text-lg"
+										>
+											Description
+										</label>
+										<textarea
+											name="description"
+											id="description"
+											className="py-2 px-3 bg-white text-black rounded-lg"
+											required
+										></textarea>
+									</div>
+									<div className="flex flex-col mb-4">
+										<label
+											htmlFor="quantity"
+											className="text-lg"
+										>
+											Quantity
+										</label>
+										<input
+											type="number"
+											name="quantity"
+											id="quantity"
+											className="py-2 px-3 bg-white text-black rounded-lg"
+											required
+										/>
+									</div>
+									<div className="flex justify-center">
+										<button
+											type="submit"
+											className="py-2 px-3 bg-primary text-black rounded-lg hover:shadow-xl"
+										>
+											Submit
+										</button>
+									</div>
+								</form>
+							</div>
+						)}
+					</Popup>
+				</div>
 				<table className="w-full border-2 border-solid rounded-lg border-primary shadow-black shadow-sm border-collapse">
 					<thead className="">
 						<tr>
@@ -121,7 +236,7 @@ const ManageInv = () => {
 									<td>
 										<Popup
 											trigger={
-												<button className="py-2 px-3 bg-primary text-black rounded-lg group-hover:bg-accent transition-colors duration-200 hover:shadow-xl">
+												<button className="py-2 px-3 bg-primary text-black rounded-lg group-hover:bg-accent transition-colors duration-200 hover:shadow-xl mr-3">
 													Edit
 												</button>
 											}
@@ -157,6 +272,9 @@ const ManageInv = () => {
 																id="name"
 																className="py-2 px-3 bg-white text-black rounded-lg"
 																required
+																defaultValue={
+																	item.name
+																}
 															/>
 														</div>
 														<div className="flex flex-col mb-4">
@@ -171,6 +289,9 @@ const ManageInv = () => {
 																id="description"
 																className="py-2 px-3 bg-white text-black rounded-lg"
 																required
+																defaultValue={
+																	item.description
+																}
 															></textarea>
 														</div>
 														<div className="flex flex-col mb-4">
@@ -186,6 +307,9 @@ const ManageInv = () => {
 																id="quantity"
 																className="py-2 px-3 bg-white text-black rounded-lg"
 																required
+																defaultValue={
+																	item.quantity
+																}
 															/>
 														</div>
 														<div className="flex justify-center">
