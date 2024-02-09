@@ -34,7 +34,6 @@ app.use(
 	})
 );
 app.use(bodyParser.json());
-app.use(loggerMW);
 
 app.use(
 	session({
@@ -86,6 +85,9 @@ passport.deserializeUser(async (user, done) => {
 	user = await getUser(user);
 	done(null, user);
 });
+
+// Logger Middleware (must be after passport middleware)
+app.use(loggerMW);
 
 // Routes
 const router = express.Router();
