@@ -1,4 +1,4 @@
-Full-Stack Hardware Checkout system using express, node.js and postgresql for the backend. React and TailwindCSS for the frontend.
+Full-Stack Hardware Checkout system using express, node.js and postgresql for the backend with React and TailwindCSS for the frontend.
 
 Originally started as part of work experience with linney but I have continued it after the work experience has concluded
 
